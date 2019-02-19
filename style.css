@@ -1,8 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 body {
-    background-color: lightblue;
+    background-color: rgba(20, 20, 21, 0.94);
+    font-family: 'Montserrat', sans-serif;
 }
 .navbar .head h1 {
     text-align: left;
+    color:white;
 }
 
 .main {
@@ -23,10 +26,12 @@ body {
 .game_area {
     display: flex;
     margin-left: 20px;
-    width :350px;
+    width :auto;
+    height:auto;
     flex-flow: row wrap;
     justify-content: space-around;
-    background-color:black;
+    background-color:brown;
+ 
 }
 .main .game_area button {
     margin-top: 20px;
@@ -35,7 +40,7 @@ body {
     margin-bottom: 20px;
     width: 50px;
     height: 50px;
-    background-color: red;
+    background-color:#efff00d9;
     border: none;
 
 }

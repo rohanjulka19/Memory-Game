@@ -10,7 +10,7 @@ init();
 
 function init() {
     shuffle();
-    for(i = 0 ; i<12 ; i++) {
+    for(i = 0 ; i<65 ; i++) {
         
         blocks_area.innerHTML += '<button value= ' + shuffled[i] + ' ></button>' ;  
     }
