@@ -2,21 +2,23 @@ let blocks_area = document.getElementById('game');
 let buttons;
 let flag = 0 ;
 let temp_button , temp_button1;
-let series = [1,1,2,2,3,3,4,4,5,5,6,6];
+let series = [];
 let shuffled = []  ;
-let length = 12;
-
+const noOfBlocks = 20;
+let seriesLength = noOfBlocks;
 init(); 
 
 function init() {
+
+    generateSeries(noOfBlocks);
     shuffle();
-    for(i = 0 ; i<65 ; i++) {
+    for(index = 0 ; index<noOfBlocks ; index++) {
         
-        blocks_area.innerHTML += '<button value= ' + shuffled[i] + ' ></button>' ;  
+        blocks_area.innerHTML += '<button value= ' + shuffled[index] + ' ></button>' ;  
     }
     buttons = blocks_area.getElementsByTagName("BUTTON");
 
-    for( i = 0 ; i<12 ; i++) {
+    for( i = 0 ; i<noOfBlocks ; i++) {
        buttons[i].addEventListener('click', function() {
                 this.innerHTML = this.value ;
                 if(flag == 0 ) {
@@ -29,6 +31,11 @@ function init() {
                 if(temp_button1.value != temp_button.value) {
                    temp_button1.innerHTML = '' ;
                    temp_button.innerHTML = '';
+               } else if (temp_button1.value == temp_button.value) {
+                   addScore(10);
+                   temp_button.disabled = true;
+                   temp_button1.disabled = true;
+
                }
             },200);
            }
@@ -38,15 +45,30 @@ function init() {
     
 }
 
-
+  function addScore(score) {
+      currentScore = parseInt(document.getElementById("score").innerHTML);
+      currentScore += score;
+      document.getElementById("score").innerHTML = currentScore  ;
+  }
+  function generateSeries(num) {
+      let count = 1;
+      for(i = 0  ; i<num ; i+=2) {
+          series[i] = count;
+          series[i+1] = count;
+          count++;
+          console.log(series[i]);
+          console.log(series[i+1]);
+      }
+  }
+  
   function shuffle() {
-      for(index = 0 ; index <12 ; index++) {
-        let num = Math.floor(Math.random() * length);
+      for(index = 0 ; index <noOfBlocks ; index++) {
+        let num = Math.floor(Math.random() * seriesLength);
         shuffled[index] =  series[num] ;
-        for(i = num ; i <length ; i++) {
+        for(i = num ; i <seriesLength ; i++) {
             series[i] = series[i+1];   
         }
-        length--;
+        seriesLength--;
     }
   }
 
