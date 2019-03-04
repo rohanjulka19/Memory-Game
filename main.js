@@ -1,6 +1,6 @@
 let blocks_area = document.getElementById('game');
 let buttons;
-let flag = 0 ;
+let flag = 0 ,start = 0,time = 59 ,currentScore = 0,counter;
 let temp_button , temp_button1;
 let series = [];
 let shuffled = []  ;
@@ -21,6 +21,10 @@ function init() {
     for( i = 0 ; i<noOfBlocks ; i++) {
        buttons[i].addEventListener('click', function() {
                 this.innerHTML = this.value ;
+                if(start == 0) {
+                    counter = setInterval(startTimer , 1000);
+                    start = 1 ;
+                }
                 if(flag == 0 ) {
                     flag = 1 ;
                     temp_button = this;
@@ -39,6 +43,11 @@ function init() {
                }
             },200);
            }
+        if(currentScore == 100) {
+            alert("Congratulations you won ");
+            clearInterval(counter);
+            return ;
+        }
        })
        
     }
@@ -79,3 +88,20 @@ function init() {
       }
   }
 
+function startTimer() {
+    timer = document.getElementById("timer");
+
+    if(time == 0) {
+        timer.innerHTML = "0:00";
+        alert("You score is " + currentScore);
+        clearInterval(counter);
+    }
+
+    if(time >= 10) {
+        timer.innerHTML = "0:" + time ;
+        time-- ;
+    } else if(time <10 ) {
+        timer.innerHTML = "0:0" + time ;
+        time--;
+    } 
+}
